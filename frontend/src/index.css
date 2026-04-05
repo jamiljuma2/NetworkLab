@@ -595,6 +595,64 @@ html.compact-mode .terminal-output p {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  .font-orbitron {
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  p,
+  span,
+  label {
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    font-size: 0.68rem;
+    padding: 0.45rem 0.65rem;
+    letter-spacing: 0.02em;
+  }
+
+  .input {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.55rem;
+  }
+
+  .app-shell-active nav a,
+  .app-shell-active button {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
   .dense-view {
     width: 100%;
     max-width: 100%;
@@ -614,11 +672,44 @@ html.compact-mode .terminal-output p {
   .dense-view h1,
   .dense-view h2,
   .dense-view h3 {
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   .dense-view .input,
   .dense-view button {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.55rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p,
+  span,
+  label {
+    font-size: 0.82rem;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    font-size: 0.64rem;
+    padding: 0.4rem 0.58rem;
+  }
+
+  .input {
+    font-size: 0.74rem;
+    padding: 0.4rem 0.5rem;
   }
 }

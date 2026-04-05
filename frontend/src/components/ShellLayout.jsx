@@ -1,5 +1,5 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const links = [
@@ -16,6 +16,8 @@ const links = [
 
 export default function ShellLayout() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const mainRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [compactMode, setCompactMode] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -40,6 +42,9 @@ export default function ShellLayout() {
   useEffect(() => {
     function handleViewportChange() {
       setMenuOpen(false);
+      if (mainRef.current) {
+        mainRef.current.scrollLeft = 0;
+      }
     }
 
     window.addEventListener("resize", handleViewportChange);
@@ -50,6 +55,13 @@ export default function ShellLayout() {
       window.removeEventListener("orientationchange", handleViewportChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollLeft = 0;
+      mainRef.current.scrollTop = 0;
+    }
+  }, [location.pathname]);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -67,17 +79,17 @@ export default function ShellLayout() {
         ) : null}
 
         <aside
-          className={`glass fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-64 flex-col border-r border-neon/35 p-3 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-64 ${
+          className={`glass fixed inset-y-0 left-0 z-50 flex w-[82vw] max-w-64 flex-col border-r border-neon/35 p-2.5 sm:p-3 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-64 ${
             menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         >
           <div className="min-h-0 flex-1 overflow-y-auto pr-1">
             <div className="border-b border-neon/30 pb-3">
-              <p className="font-orbitron text-lg tracking-widest text-neon">NETWORKLAB</p>
-              <p className="text-xs text-slate-400 break-words">Vulnerability Assessment Command Center</p>
+              <p className="font-orbitron text-base tracking-[0.12em] text-neon sm:text-lg sm:tracking-widest">NETWORKLAB</p>
+              <p className="text-[11px] leading-tight text-slate-400 break-words sm:text-xs">Vulnerability Assessment Command Center</p>
             </div>
 
-            <nav className="mt-4 grid gap-2 text-sm">
+            <nav className="mt-4 grid gap-1.5 text-xs sm:gap-2 sm:text-sm">
               {links
                 .filter((link) => !link.adminOnly || user?.role === "Admin")
                 .map((link) => (
@@ -86,7 +98,7 @@ export default function ShellLayout() {
                     to={link.to}
                     onClick={closeMenu}
                     className={({ isActive }) =>
-                      `rounded-md border px-3 py-2 transition ${
+                      `rounded-md border px-2.5 py-2 text-[11px] leading-tight transition sm:px-3 sm:text-xs ${
                         isActive
                           ? "border-neon bg-neon/10 text-neon"
                           : "border-slate-700 text-slate-300 hover:border-neon/60 hover:text-neon"
@@ -119,12 +131,12 @@ export default function ShellLayout() {
         </aside>
 
         <section className="relative left-0 right-0 flex min-w-0 flex-1 max-w-full flex-col overflow-x-hidden">
-          <header className="glass sticky top-0 z-30 border-b border-neon/35 px-3 py-3 lg:hidden">
+          <header className="glass sticky top-0 z-30 border-b border-neon/35 px-2.5 py-2.5 sm:px-3 sm:py-3 lg:hidden">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-2">
-              <p className="font-orbitron text-sm tracking-widest text-neon">NETWORKLAB</p>
+              <p className="font-orbitron text-xs tracking-[0.12em] text-neon sm:text-sm sm:tracking-widest">NETWORKLAB</p>
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="rounded-md border border-slate-700 px-2 py-2 text-[10px] text-slate-200"
+                className="rounded-md border border-slate-700 px-2 py-1.5 text-[10px] text-slate-200 sm:py-2"
                 aria-label="Toggle navigation"
               >
                 {menuOpen ? "Close" : "Menu"}
@@ -132,8 +144,8 @@ export default function ShellLayout() {
             </div>
           </header>
 
-          <main className="w-full max-w-full flex-1 min-w-0 overflow-x-auto overflow-y-auto px-4 py-4 md:p-6">
-            <div className="mx-auto w-full max-w-full sm:max-w-2xl lg:mx-0 lg:max-w-none">
+          <main ref={mainRef} className="w-full max-w-full flex-1 min-w-0 overflow-x-hidden overflow-y-auto px-2.5 py-3 sm:px-4 sm:py-4 md:p-6">
+            <div className="mx-auto w-full max-w-full sm:max-w-xl lg:mx-0 lg:max-w-none">
               <Outlet />
             </div>
           </main>
