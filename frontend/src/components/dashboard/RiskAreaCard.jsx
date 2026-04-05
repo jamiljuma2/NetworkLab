@@ -4,8 +4,8 @@ export default function RiskAreaCard({ trend }) {
   return (
     <section className="glass dense-chart rounded-xl border border-neon/30 p-4">
       <h2 className="font-orbitron text-neon">Risk Area</h2>
-      <div className="chart-body h-60">
-        <ResponsiveContainer>
+      <div className="chart-body h-60 w-full min-w-0">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={200}>
           <AreaChart data={trend}>
             <XAxis dataKey="slot" stroke="#8fa2b8" />
             <YAxis stroke="#8fa2b8" />

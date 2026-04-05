@@ -135,6 +135,13 @@ code, pre {
   position: relative;
 }
 
+/* Recharts containers need concrete, non-negative dimensions during layout recalculations */
+.dense-chart,
+.dense-chart .chart-body {
+  width: 100%;
+  min-width: 0;
+}
+
 /* Glow Text - Multi-layered neon text-shadow */
 .glow-text {
   color: hsl(var(--foreground));

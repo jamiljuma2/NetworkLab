@@ -6,8 +6,8 @@ export default function SeverityDistributionCard({ pieData }) {
   return (
     <section className="glass dense-chart rounded-xl border border-neon/30 p-4 lg:col-span-1">
       <h2 className="font-orbitron text-neon">Severity Distribution</h2>
-      <div className="chart-body h-64">
-        <ResponsiveContainer>
+      <div className="chart-body h-64 w-full min-w-0">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={220}>
           <PieChart>
             <Pie data={pieData} dataKey="value" nameKey="name" outerRadius={90}>
               {pieData.map((entry) => (
