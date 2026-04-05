@@ -26,9 +26,24 @@ body.app-shell-active .app-layout-fullbleed > div > section > main {
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
+  body.app-shell-active .app-layout-fullbleed > div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.app-shell-active .app-layout-fullbleed > div > section {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
   body.app-shell-active .app-layout-fullbleed > div > section > main {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 
   body.app-shell-active .app-layout-fullbleed > div > section > main > div {

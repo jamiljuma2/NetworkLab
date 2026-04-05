@@ -69,7 +69,7 @@ export default function ShellLayout() {
 
   return (
     <div className="app-layout-fullbleed min-h-screen w-full max-w-full overflow-x-hidden bg-grid text-slate-100">
-      <div className="flex min-h-screen w-full max-w-full overflow-x-hidden">
+      <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden lg:flex-row">
         {menuOpen ? (
           <button
             className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
@@ -130,7 +130,7 @@ export default function ShellLayout() {
           </div>
         </aside>
 
-        <section className="relative left-0 right-0 flex min-w-0 flex-1 max-w-full flex-col overflow-x-hidden">
+        <section className="relative flex w-full min-w-0 flex-1 max-w-full flex-col overflow-x-hidden">
           <header className="glass sticky top-0 z-30 border-b border-neon/35 px-2.5 py-2.5 sm:px-3 sm:py-3 lg:hidden">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-2">
               <p className="font-orbitron text-xs tracking-[0.12em] text-neon sm:text-sm sm:tracking-widest">NETWORKLAB</p>
