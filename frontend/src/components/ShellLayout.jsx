@@ -37,7 +37,7 @@ export default function ShellLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-grid text-slate-100">
+    <div className="min-h-screen overflow-x-hidden bg-grid text-slate-100">
       <div className="flex min-h-screen">
         {menuOpen ? (
           <button
@@ -99,7 +99,7 @@ export default function ShellLayout() {
           </div>
         </aside>
 
-        <section className="flex min-w-0 flex-1 flex-col">
+        <section className="flex min-w-0 flex-1 flex-col overflow-x-hidden">
           <header className="glass sticky top-0 z-30 border-b border-neon/35 px-3 py-3 sm:hidden">
             <div className="flex items-center justify-between gap-2">
               <p className="font-orbitron text-sm tracking-widest text-neon">NETWORKLAB</p>
@@ -113,7 +113,7 @@ export default function ShellLayout() {
             </div>
           </header>
 
-          <main className="w-full p-3 sm:p-4 md:p-6">
+          <main className="w-full max-w-full p-3 sm:p-4 md:p-6">
             <Outlet />
           </main>
         </section>

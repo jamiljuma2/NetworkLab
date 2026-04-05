@@ -7,6 +7,12 @@ export default function TopologyPage() {
   const [selected, setSelected] = useState(null);
   const [scanId, setScanId] = useState("");
 
+  function formatScanLabel(scan) {
+    const target = String(scan.target || "");
+    const compactTarget = target.length > 28 ? `${target.slice(0, 25)}...` : target;
+    return `${compactTarget} | ${scan.status} | hosts: ${scan.hosts}`;
+  }
+
   async function loadTopology(selectedScanId) {
     const params = selectedScanId ? { scanId: selectedScanId } : {};
     const { data } = await api.get("/api/topology", { params });
@@ -39,7 +45,7 @@ export default function TopologyPage() {
           <select className="input" value={scanId} onChange={onSelectScan}>
             {(topology.availableScans || []).map((scan) => (
               <option key={scan.id} value={scan.id}>
-                {scan.target} | {scan.status} | hosts: {scan.hosts}
+                {formatScanLabel(scan)}
               </option>
             ))}
           </select>

@@ -372,7 +372,7 @@ export default function ScannerPage() {
                     {scan.target} ({scan.scanType})
                   </p>
                 </div>
-                <span className="ml-2 whitespace-nowrap text-neon/80">{scan.hostsFound || 0} hosts</span>
+                <span className="ml-2 text-neon/80">{scan.hostsFound || 0} hosts</span>
               </li>
             ))}
           </ul>

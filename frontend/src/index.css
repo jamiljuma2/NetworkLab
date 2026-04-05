@@ -549,3 +549,32 @@ html.compact-mode .terminal-output p {
     padding: 0.55rem 0.65rem;
   }
 }
+
+@media (max-width: 768px) {
+  .dense-view {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .dense-view > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .glass,
+  .glass-panel {
+    max-width: 100%;
+  }
+
+  .dense-view h1,
+  .dense-view h2,
+  .dense-view h3 {
+    word-break: break-word;
+  }
+
+  .dense-view .input,
+  .dense-view button {
+    max-width: 100%;
+  }
+}
