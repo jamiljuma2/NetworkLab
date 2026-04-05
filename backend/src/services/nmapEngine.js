@@ -1,4 +1,4 @@
-const { spawn, spawnSync } = require("child_process");
+const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const { env } = require("../config/env");
@@ -19,16 +19,10 @@ function isUsableNmapExecutable(candidate) {
   if (!normalizedCandidate) return false;
 
   if (path.isAbsolute(normalizedCandidate) || normalizedCandidate.includes(path.sep)) {
-    if (!fs.existsSync(normalizedCandidate)) return false;
+    return fs.existsSync(normalizedCandidate);
   }
 
-  const probe = spawnSync(normalizedCandidate, ["-V"], {
-    windowsHide: true,
-    stdio: "ignore",
-    timeout: 5000,
-  });
-
-  return !probe.error && probe.status === 0;
+  return true;
 }
 
 function resolveNmapExecutable() {
