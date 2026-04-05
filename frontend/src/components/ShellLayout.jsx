@@ -105,7 +105,7 @@ export default function ShellLayout() {
         ) : null}
 
         <aside
-          className={`glass !fixed inset-y-0 left-0 z-50 flex h-dvh w-screen max-w-none flex-col rounded-none border-r border-neon/35 p-2.5 transition-transform sm:p-3 lg:!sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-64 lg:rounded-xl ${
+          className={`glass !fixed bottom-3 left-2 top-3 z-50 flex h-[calc(100dvh-1.5rem)] w-[84vw] max-w-[20rem] flex-col rounded-xl border-r border-neon/35 p-2.5 transition-transform sm:w-[80vw] sm:p-3 lg:!sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-64 ${
             menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         >
