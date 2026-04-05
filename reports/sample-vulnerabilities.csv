@@ -1,0 +1,4 @@
+cve_id,cvss,severity,title
+CVE-2021-44228,10,Critical,Log4Shell RCE in Log4j
+CVE-2017-0144,8.1,High,SMBv1 EternalBlue
+CVE-2020-1472,10,Critical,Zerologon

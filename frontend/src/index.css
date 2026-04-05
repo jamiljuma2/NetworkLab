@@ -1,0 +1,551 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;600;700&display=swap");
+@import "tailwindcss";
+
+/* ============================================================================
+   VULNLAB DESIGN SYSTEM - HSL COLOR TOKENS
+   ============================================================================ */
+
+:root {
+  /* Primary Colors (HSL-based) */
+  --background: 220 20% 4%;
+  --foreground: 120 100% 80%;
+  
+  --primary: 120 100% 50%;     /* #00FF00 - Pure neon green */
+  --secondary: 180 100% 40%;   /* Cyan */
+  --accent: 280 100% 60%;      /* Purple */
+  --destructive: 0 85% 55%;    /* Red */
+  
+  --muted: 220 15% 12%;
+  --card: 220 20% 7%;
+  
+  /* Severity Colors (CVSS mapping) */
+  --critical: 0 85% 55%;       /* Red */
+  --high: 25 95% 55%;          /* Orange */
+  --medium: 50 95% 55%;        /* Yellow */
+  --low: 200 95% 60%;          /* Blue */
+  
+  /* Legacy color for backward compatibility */
+  --color-neon: hsl(var(--primary));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* ============================================================================
+   GLOBAL STYLES & TYPOGRAPHY
+   ============================================================================ */
+
+body {
+  font-family: "Inter", sans-serif;
+  background: hsl(var(--background));
+  background-image: 
+    radial-gradient(circle at 12% 18%, hsla(120, 100%, 50%, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 0%, hsla(180, 100%, 40%, 0.12) 0%, transparent 35%);
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: hsl(var(--foreground));
+}
+
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 2rem; font-weight: 700; }
+h3 { font-size: 1.5rem; font-weight: 600; }
+h4 { font-size: 1.25rem; font-weight: 600; }
+h5 { font-size: 1rem; font-weight: 600; }
+h6 { font-size: 0.875rem; font-weight: 600; }
+
+p, span, label {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+code, pre {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+}
+
+/* Text Selection */
+::selection {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--background));
+}
+
+/* ============================================================================
+   CUSTOM UTILITY CLASSES
+   ============================================================================ */
+
+/* Glass Panel - Glassmorphism UI Foundation */
+.glass-panel {
+  background: linear-gradient(180deg, 
+    hsla(220, 20%, 7%, 0.88), 
+    hsla(220, 20%, 4%, 0.9));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid hsla(120, 100%, 50%, 0.3);
+  border-radius: 0.75rem;
+  box-shadow: 
+    0 8px 32px 0 hsla(120, 100%, 50%, 0.1),
+    inset 0 0 16px hsla(120, 100%, 50%, 0.05);
+  position: relative;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, 
+    hsla(120, 100%, 50%, 0.05) 0%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Backward compatibility */
+.glass {
+  background: linear-gradient(180deg, 
+    hsla(220, 20%, 7%, 0.88), 
+    hsla(220, 20%, 4%, 0.9));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid hsla(120, 100%, 50%, 0.3);
+  border-radius: 0.75rem;
+  box-shadow: 
+    0 8px 32px 0 hsla(120, 100%, 50%, 0.1),
+    inset 0 0 16px hsla(120, 100%, 50%, 0.05);
+  position: relative;
+}
+
+/* Glow Text - Multi-layered neon text-shadow */
+.glow-text {
+  color: hsl(var(--foreground));
+  text-shadow: 
+    0 0 4px hsla(120, 100%, 50%, 0.4),
+    0 0 8px hsla(120, 100%, 50%, 0.3),
+    0 0 16px hsla(120, 100%, 50%, 0.2),
+    0 0 32px hsla(120, 100%, 50%, 0.15);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Glow Border - Green neon glow */
+.glow-border {
+  border: 1px solid hsl(var(--primary));
+  box-shadow: 
+    0 0 8px hsla(120, 100%, 50%, 0.3),
+    0 0 16px hsla(120, 100%, 50%, 0.2),
+    inset 0 0 8px hsla(120, 100%, 50%, 0.1);
+}
+
+/* Glow Border Accent - Purple neon glow */
+.glow-border-accent {
+  border: 1px solid hsl(var(--accent));
+  box-shadow: 
+    0 0 8px hsla(280, 100%, 60%, 0.3),
+    0 0 16px hsla(280, 100%, 60%, 0.2),
+    inset 0 0 8px hsla(280, 100%, 60%, 0.1);
+}
+
+/* Scan Line - CRT scanline overlay effect */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    hsla(120, 100%, 50%, 0.08),
+    hsla(120, 100%, 50%, 0.08) 1px,
+    transparent 1px,
+    transparent 2px);
+  pointer-events: none;
+  animation: scanlines 8s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+/* Terminal Background */
+.terminal-bg {
+  background: hsl(var(--background));
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      hsla(120, 100%, 50%, 0.03),
+      hsla(120, 100%, 50%, 0.03) 2px,
+      transparent 2px,
+      transparent 4px),
+    repeating-linear-gradient(
+      90deg,
+      hsla(120, 100%, 50%, 0.02) 0px,
+      hsla(120, 100%, 50%, 0.02) 1px,
+      transparent 1px,
+      transparent 2px);
+  border: 1px solid hsla(120, 100%, 50%, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+/* Terminal Text */
+.text-terminal {
+  font-family: "JetBrains Mono", monospace;
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+/* Blinking cursor for terminal */
+.terminal-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: hsl(var(--foreground));
+  margin-left: 0.25em;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Severity Badge Utilities */
+.severity-critical {
+  background-color: hsla(var(--critical), 0.1);
+  border: 1px solid hsl(var(--critical));
+  color: hsl(var(--critical));
+}
+
+.severity-high {
+  background-color: hsla(var(--high), 0.1);
+  border: 1px solid hsl(var(--high));
+  color: hsl(var(--high));
+}
+
+.severity-medium {
+  background-color: hsla(var(--medium), 0.1);
+  border: 1px solid hsl(var(--medium));
+  color: hsl(var(--medium));
+}
+
+.severity-low {
+  background-color: hsla(var(--low), 0.1);
+  border: 1px solid hsl(var(--low));
+  color: hsl(var(--low));
+}
+
+/* ============================================================================
+   ANIMATION DEFINITIONS
+   ============================================================================ */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px hsla(120, 100%, 50%, 0.3);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 16px hsla(120, 100%, 50%, 0.5);
+  }
+}
+
+@keyframes animate-scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-blink {
+  animation: blink 1s step-start infinite;
+}
+
+.animate-scanline {
+  animation: animate-scanline 8s linear infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+
+.input {
+  border: 1px solid hsla(220, 15%, 50%, 0.5);
+  background: hsla(220, 20%, 4%, 0.6);
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  transition: all 200ms ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 12px hsla(120, 100%, 50%, 0.3);
+}
+
+.input::placeholder {
+  color: hsla(var(--foreground), 0.5);
+}
+
+/* ============================================================================
+   BUTTON STYLES
+   ============================================================================ */
+
+.btn-primary {
+  background: linear-gradient(90deg, 
+    hsla(120, 100%, 50%, 0.15),
+    hsla(180, 100%, 40%, 0.12));
+  border: 1px solid hsl(var(--primary));
+  color: hsl(var(--foreground));
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 200ms ease;
+  box-shadow: 0 0 12px hsla(120, 100%, 50%, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shared smooth interaction utilities */
+.ui-smooth {
+  transition: all 220ms ease;
+}
+
+.ui-card-interactive {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.ui-card-interactive:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .ui-card-interactive:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-smooth,
+  .ui-card-interactive,
+  .ui-card-interactive:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: hsla(120, 100%, 50%, 0.1);
+  transition: left 200ms ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px hsla(120, 100%, 50%, 0.4);
+  border-color: hsla(120, 100%, 50%, 1);
+}
+
+.btn-primary:hover::before {
+  left: 0;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+  box-shadow: 0 0 8px hsla(120, 100%, 50%, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(120, 100%, 60%, 1);
+  box-shadow: 0 0 12px hsla(120, 100%, 50%, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+  scrollbar-width: thin;
+}
+
+/* ============================================================================
+   BACKWARD COMPATIBILITY & LEGACY UTILITIES
+   ============================================================================ */
+
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+
+.text-neon {
+  color: hsl(var(--primary));
+}
+
+.border-neon\/30 {
+  border-color: hsla(120, 100%, 50%, 0.3);
+}
+
+.border-neon\/35 {
+  border-color: hsla(120, 100%, 50%, 0.35);
+}
+
+.border-neon\/40 {
+  border-color: hsla(120, 100%, 50%, 0.4);
+}
+
+.border-neon\/50 {
+  border-color: hsla(120, 100%, 50%, 0.5);
+}
+
+.border-neon\/60 {
+  border-color: hsla(120, 100%, 50%, 0.6);
+}
+
+.shadow-neon {
+  box-shadow: 0 0 24px hsla(120, 100%, 50%, 0.18);
+}
+
+.neon\/60 {
+  color: hsla(120, 100%, 50%, 0.6);
+}
+
+.ring-neon\/20 {
+  box-shadow: 0 0 0 2px hsla(120, 100%, 50%, 0.2);
+}
+
+/* ============================================================================
+   COMPACT MODE + VERY SMALL DEVICE (320px) SUPPORT
+   ============================================================================ */
+
+html.compact-mode .dense-view {
+  font-size: 0.8125rem;
+}
+
+html.compact-mode .dense-view .glass,
+html.compact-mode .dense-view .glass-panel {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+html.compact-mode .dense-view .input {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.78rem;
+}
+
+html.compact-mode .dense-view .btn-primary {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+html.compact-mode .dense-table th,
+html.compact-mode .dense-table td {
+  padding: 0.35rem 0.45rem;
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+html.compact-mode .dense-list li {
+  padding: 0.45rem 0.55rem;
+}
+
+html.compact-mode .dense-chart .chart-body {
+  height: 12rem;
+}
+
+html.compact-mode .terminal-output {
+  padding: 0.55rem 0.65rem;
+}
+
+html.compact-mode .terminal-output p {
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.035em;
+  }
+
+  .input {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .terminal-output {
+    font-size: 0.68rem;
+    padding: 0.55rem 0.65rem;
+  }
+}

@@ -1,0 +1,69 @@
+# -----------------------------
+# Environment and secrets
+# -----------------------------
+.env
+.env.*
+!.env.example
+!.env.sample
+
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Secrets and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+*.kdbx
+*.ovpn
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Service account or cloud credential files
+*credentials*.json
+*service-account*.json
+*secret*.json
+
+# -----------------------------
+# Dependency and build outputs
+# -----------------------------
+**/node_modules/
+**/dist/
+**/build/
+**/.next/
+**/.cache/
+
+# -----------------------------
+# Logs and runtime artifacts
+# -----------------------------
+*.log
+logs/
+backend/logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# -----------------------------
+# IDE and OS files
+# -----------------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

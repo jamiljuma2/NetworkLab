@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-04-05T00:00:00.000Z",
+  "riskLevel": "High",
+  "scanOverview": {
+    "scanId": "scan_demo",
+    "target": "10.0.0.0/24",
+    "hostsDiscovered": 8,
+    "vulnerableHosts": 3
+  },
+  "recommendations": [
+    "Patch critical CVEs in exposed services.",
+    "Enable MFA on privileged workflows.",
+    "Reduce SMB lateral movement with segmentation."
+  ]
+}
