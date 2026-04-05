@@ -16,7 +16,7 @@ const { env } = require("./config/env");
 
 function createApp() {
   const app = express();
-  const allowedOrigins = new Set(env.clientOrigins);
+  const allowedOrigin = env.clientOrigin;
 
   // Render (and most PaaS providers) sit behind a reverse proxy.
   app.set("trust proxy", 1);
@@ -25,7 +25,7 @@ function createApp() {
   app.use(
     cors({
       origin(origin, callback) {
-        if (!origin || allowedOrigins.has(origin)) {
+        if (!origin || origin === allowedOrigin) {
           return callback(null, true);
         }
         return callback(new Error(`CORS blocked for origin: ${origin}`));

@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const io = new Server(server, {
     cors: {
-      origin: env.clientOrigins,
+      origin: env.clientOrigin,
       methods: ["GET", "POST"],
     },
   });
