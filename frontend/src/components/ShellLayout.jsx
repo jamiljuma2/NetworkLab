@@ -55,7 +55,6 @@ export default function ShellLayout() {
   useEffect(() => {
     function handleViewportChange() {
       setMenuOpen(false);
-      resetViewportPosition();
     }
 
     window.addEventListener("resize", handleViewportChange);
