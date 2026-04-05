@@ -6,6 +6,7 @@ const env = {
   jwtTtl: process.env.JWT_TTL || "8h",
   databaseUrl: process.env.DATABASE_URL || "",
   clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  nmapPath: process.env.NMAP_PATH || "",
 };
 
 module.exports = { env };

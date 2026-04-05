@@ -38,6 +38,8 @@ wsl apt install nmap
 nmap -V
 ```
 
+**Windows note:** if Nmap is installed but not on PATH, set `NMAP_PATH` in `backend/.env` to the full path of `nmap.exe`, for example `C:\Program Files\Nmap\nmap.exe`.
+
 ---
 
 ## Installation

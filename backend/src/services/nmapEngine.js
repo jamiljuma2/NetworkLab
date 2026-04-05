@@ -1,4 +1,7 @@
-const { spawn } = require("child_process");
+const { spawn, spawnSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
+const { env } = require("../config/env");
 const { inMemory, generateId } = require("./store");
 const { addActivity } = require("./store");
 
@@ -8,6 +11,54 @@ const { addActivity } = require("./store");
  */
 
 const activeScanProcesses = new Map();
+
+function isUsableNmapExecutable(candidate) {
+  if (!candidate) return false;
+
+  const normalizedCandidate = candidate.trim();
+  if (!normalizedCandidate) return false;
+
+  if (path.isAbsolute(normalizedCandidate) || normalizedCandidate.includes(path.sep)) {
+    if (!fs.existsSync(normalizedCandidate)) return false;
+  }
+
+  const probe = spawnSync(normalizedCandidate, ["-V"], {
+    windowsHide: true,
+    stdio: "ignore",
+    timeout: 5000,
+  });
+
+  return !probe.error && probe.status === 0;
+}
+
+function resolveNmapExecutable() {
+  const configuredPath = env.nmapPath;
+  const candidates = [];
+
+  if (configuredPath) {
+    candidates.push(configuredPath);
+  }
+
+  candidates.push("nmap");
+
+  if (process.platform === "win32") {
+    candidates.push(
+      "C:\\Program Files\\Nmap\\nmap.exe",
+      "C:\\Program Files (x86)\\Nmap\\nmap.exe",
+      "C:\\Nmap\\nmap.exe"
+    );
+  }
+
+  for (const candidate of candidates) {
+    if (isUsableNmapExecutable(candidate)) {
+      return candidate;
+    }
+  }
+
+  throw new Error(
+    "Nmap executable not found. Install Nmap or set NMAP_PATH to the full path of nmap.exe (for example, C:\\Program Files\\Nmap\\nmap.exe)."
+  );
+}
 
 // ===== IP VALIDATION & ALLOWLISTING =====
 
@@ -120,7 +171,7 @@ function validateTarget(target) {
 // ===== SCAN COMMAND BUILDING =====
 
 function buildNmapCommand(target, scanType, isProduction = false) {
-  const baseCmd = ["nmap"];
+  const baseCmd = [resolveNmapExecutable()];
 
   if (isProduction) {
     // Safe mode for production targets
@@ -324,7 +375,7 @@ function startNmapScan({ target, scanType, userId, role, consent = false }, onPr
     let progressSimulation = 0;
 
     // 8. Spawn Nmap process
-    const nmapProcess = spawn("nmap", nmapArgs.slice(1), {
+    const nmapProcess = spawn(nmapArgs[0], nmapArgs.slice(1), {
       stdio: ["ignore", "pipe", "pipe"],
       timeout: 300000, // 5 minutes max
     });
