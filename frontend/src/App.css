@@ -24,3 +24,17 @@ body.app-shell-active .app-layout-fullbleed > div > section > main {
   left: 0;
   right: 0;
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  body.app-shell-active .app-layout-fullbleed > div > section > main {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  body.app-shell-active .app-layout-fullbleed > div > section > main > div {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

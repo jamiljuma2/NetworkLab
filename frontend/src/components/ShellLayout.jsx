@@ -37,6 +37,20 @@ export default function ShellLayout() {
     return () => document.body.classList.remove("app-shell-active");
   }, []);
 
+  useEffect(() => {
+    function handleViewportChange() {
+      setMenuOpen(false);
+    }
+
+    window.addEventListener("resize", handleViewportChange);
+    window.addEventListener("orientationchange", handleViewportChange);
+
+    return () => {
+      window.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("orientationchange", handleViewportChange);
+    };
+  }, []);
+
   function closeMenu() {
     setMenuOpen(false);
   }
@@ -119,7 +133,7 @@ export default function ShellLayout() {
           </header>
 
           <main className="w-full max-w-full flex-1 min-w-0 overflow-x-auto overflow-y-auto px-4 py-4 md:p-6">
-            <div className="mx-auto w-full max-w-md sm:max-w-2xl lg:mx-0 lg:max-w-none">
+            <div className="mx-auto w-full max-w-full sm:max-w-2xl lg:mx-0 lg:max-w-none">
               <Outlet />
             </div>
           </main>
