@@ -77,6 +77,18 @@ export default function ShellLayout() {
     return () => window.clearTimeout(id);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   function closeMenu() {
     setMenuOpen(false);
   }
@@ -93,7 +105,7 @@ export default function ShellLayout() {
         ) : null}
 
         <aside
-          className={`glass fixed inset-y-0 left-0 z-50 flex w-[82vw] max-w-64 flex-col border-r border-neon/35 p-2.5 sm:p-3 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-64 ${
+          className={`glass fixed inset-y-0 left-0 z-50 flex h-dvh w-[88vw] max-w-[22rem] flex-col rounded-none border-r border-neon/35 p-2.5 transition-transform sm:w-[82vw] sm:p-3 lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-64 lg:rounded-xl ${
             menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         >
