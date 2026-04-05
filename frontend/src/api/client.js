@@ -1,6 +1,12 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const configuredApiUrl = String(import.meta.env.VITE_API_URL || "").trim();
+const productionFallbackApiUrl = "https://networklab-gwad.onrender.com";
+const developmentFallbackApiUrl = "http://localhost:4000";
+
+const baseURL =
+  configuredApiUrl ||
+  (import.meta.env.PROD ? productionFallbackApiUrl : developmentFallbackApiUrl);
 
 export const api = axios.create({
   baseURL,
