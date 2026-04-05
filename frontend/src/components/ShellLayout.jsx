@@ -24,6 +24,19 @@ export default function ShellLayout() {
     return localStorage.getItem("networklab_compact_mode") === "true";
   });
 
+  function resetViewportPosition() {
+    if (mainRef.current) {
+      mainRef.current.scrollLeft = 0;
+      mainRef.current.scrollTop = 0;
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollTop = 0;
+    document.body.scrollLeft = 0;
+  }
+
   useEffect(() => {
     const root = document.documentElement;
     if (compactMode) {
@@ -42,9 +55,7 @@ export default function ShellLayout() {
   useEffect(() => {
     function handleViewportChange() {
       setMenuOpen(false);
-      if (mainRef.current) {
-        mainRef.current.scrollLeft = 0;
-      }
+      resetViewportPosition();
     }
 
     window.addEventListener("resize", handleViewportChange);
@@ -57,11 +68,14 @@ export default function ShellLayout() {
   }, []);
 
   useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.scrollLeft = 0;
-      mainRef.current.scrollTop = 0;
-    }
+    resetViewportPosition();
   }, [location.pathname]);
+
+  useEffect(() => {
+    // Run once after initial paint to override browser scroll restoration on mobile.
+    const id = window.setTimeout(resetViewportPosition, 0);
+    return () => window.clearTimeout(id);
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
