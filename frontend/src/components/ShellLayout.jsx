@@ -105,7 +105,7 @@ export default function ShellLayout() {
         ) : null}
 
         <aside
-          className={`glass fixed inset-y-0 left-0 z-50 flex h-dvh w-[88vw] max-w-[22rem] flex-col rounded-none border-r border-neon/35 p-2.5 transition-transform sm:w-[82vw] sm:p-3 lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-64 lg:rounded-xl ${
+          className={`glass !fixed inset-y-0 left-0 z-50 flex h-dvh w-[88vw] max-w-[22rem] flex-col rounded-none border-r border-neon/35 p-2.5 transition-transform sm:w-[82vw] sm:p-3 lg:!sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-64 lg:rounded-xl ${
             menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         >
@@ -157,7 +157,7 @@ export default function ShellLayout() {
         </aside>
 
         <section className="relative flex w-full min-w-0 flex-1 max-w-full flex-col overflow-x-hidden">
-          <header className="glass sticky top-0 z-30 border-b border-neon/35 px-2.5 py-2.5 sm:px-3 sm:py-3 lg:hidden">
+          <header className="glass !sticky top-0 z-30 border-b border-neon/35 px-2.5 py-2.5 sm:px-3 sm:py-3 lg:hidden">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-2">
               <p className="font-orbitron text-xs tracking-[0.12em] text-neon sm:text-sm sm:tracking-widest">NETWORKLAB</p>
               <button
