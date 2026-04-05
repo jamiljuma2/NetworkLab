@@ -188,7 +188,7 @@ export default function ScannerPage() {
             animate={{ scale: 1 }}
             className="glass max-w-md rounded-xl border border-neon/30 p-6"
           >
-            <h3 className="font-orbitron text-lg text-neon">Production Target Warning</h3>
+            <h3 className="font-orbitron text-xl md:text-2xl text-neon">Production Target Warning</h3>
             <p className="mt-3 text-sm text-slate-300">
               This target appears to be a public or production system. You must have explicit permission to scan it.
             </p>
@@ -202,7 +202,7 @@ export default function ScannerPage() {
                   setShowConsentDialog(false);
                   setConsentGiven(false);
                 }}
-                className="btn-secondary flex-1"
+                className="btn-secondary w-full sm:w-auto flex-1"
               >
                 Cancel
               </button>
@@ -226,7 +226,7 @@ export default function ScannerPage() {
                       );
                   }, 100);
                 }}
-                className="btn-primary flex-1"
+                className="btn-primary w-full sm:w-auto flex-1"
               >
                 I Confirm
               </button>
@@ -241,7 +241,7 @@ export default function ScannerPage() {
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-xl border border-neon/30 p-4"
       >
-        <h2 className="font-orbitron text-neon">Real Network Scanner</h2>
+        <h2 className="font-orbitron text-xl md:text-2xl text-neon">Real Network Scanner</h2>
         <p className="mt-1 text-xs text-slate-400">
           Real Nmap execution with safe production mode • {user?.role || "Unknown"} role
         </p>
@@ -265,11 +265,11 @@ export default function ScannerPage() {
           </select>
 
           {!scanning ? (
-            <button onClick={startScan} className="btn-primary col-span-2 sm:col-span-1">
+            <button onClick={startScan} className="btn-primary w-full sm:w-auto col-span-2 sm:col-span-1">
               Start Scan
             </button>
           ) : (
-            <button onClick={stopCurrentScan} className="btn-danger col-span-2 sm:col-span-1">
+            <button onClick={stopCurrentScan} className="btn-danger w-full sm:w-auto col-span-2 sm:col-span-1">
               Stop Scan
             </button>
           )}
@@ -308,8 +308,8 @@ export default function ScannerPage() {
           className="glass dense-list rounded-xl border border-neon/30 p-4"
         >
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="font-orbitron text-neon">Terminal Stream</h3>
-            <p className="text-xs text-slate-400">{lines.length} output lines</p>
+            <h3 className="font-orbitron text-xl md:text-2xl text-neon">Terminal Stream</h3>
+            <p className="hidden sm:block text-xs text-slate-400">{lines.length} output lines</p>
           </div>
           <TerminalOutput lines={lines} />
         </motion.section>
@@ -322,7 +322,7 @@ export default function ScannerPage() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-3"
         >
-          <h3 className="font-orbitron text-neon px-4">Discovered Hosts ({hostRows.length})</h3>
+          <h3 className="font-orbitron text-xl md:text-2xl text-neon px-4">Discovered Hosts ({hostRows.length})</h3>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {hostRows.map((host, idx) => (
               <motion.article
@@ -360,7 +360,7 @@ export default function ScannerPage() {
           animate={{ opacity: 1, y: 0 }}
           className="glass dense-list rounded-xl border border-neon/30 p-4"
         >
-          <h3 className="font-orbitron text-neon">Scan History</h3>
+          <h3 className="font-orbitron text-xl md:text-2xl text-neon">Scan History</h3>
           <ul className="mt-3 space-y-2 text-xs">
             {history.slice(0, 8).map((scan) => (
               <li
@@ -372,7 +372,7 @@ export default function ScannerPage() {
                     {scan.target} ({scan.scanType})
                   </p>
                 </div>
-                <span className="ml-2 text-neon/80">{scan.hostsFound || 0} hosts</span>
+                <span className="ml-2 hidden sm:block text-neon/80">{scan.hostsFound || 0} hosts</span>
               </li>
             ))}
           </ul>

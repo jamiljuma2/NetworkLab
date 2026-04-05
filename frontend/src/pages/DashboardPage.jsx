@@ -47,7 +47,7 @@ export default function DashboardPage() {
 
   return (
     <div className="dense-view space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Scans" value={overview.totalScans} icon="🛰️" />
         <StatCard label="Active Scans" value={overview.activeScans} icon="📡" />
         <StatCard label="Critical CVEs" value={overview.vulnerabilitiesBySeverity.Critical} tone="danger" icon="☣️" />
@@ -69,7 +69,7 @@ export default function DashboardPage() {
         </Suspense>
 
         <section className="glass dense-list rounded-xl border border-neon/30 p-4">
-          <h2 className="font-orbitron text-neon">📟 Live Activity Feed</h2>
+          <h2 className="font-orbitron text-xl md:text-2xl text-neon">📟 Live Activity Feed</h2>
           <TerminalOutput lines={scanLogs.length ? scanLogs : overview.feed.map((f) => `${f.type.toUpperCase()} ${f.message}`)} />
         </section>
       </div>

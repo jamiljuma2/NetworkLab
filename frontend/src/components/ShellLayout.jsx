@@ -37,11 +37,11 @@ export default function ShellLayout() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-grid text-slate-100">
+    <div className="app-layout-fullbleed min-h-screen overflow-x-hidden bg-grid text-slate-100">
       <div className="flex min-h-screen">
         {menuOpen ? (
           <button
-            className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
             onClick={closeMenu}
             aria-label="Close sidebar overlay"
           />
@@ -113,7 +113,7 @@ export default function ShellLayout() {
             </div>
           </header>
 
-          <main className="w-full max-w-full p-3 sm:p-4 md:p-6">
+          <main className="w-full max-w-full flex-1 min-w-0 overflow-y-auto p-4 md:p-6">
             <Outlet />
           </main>
         </section>

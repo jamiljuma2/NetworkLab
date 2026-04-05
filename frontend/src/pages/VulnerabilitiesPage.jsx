@@ -22,16 +22,16 @@ export default function VulnerabilitiesPage() {
   return (
     <div className="dense-view space-y-4">
       <section className="glass rounded-xl border border-neon/30 p-4">
-        <h2 className="font-orbitron text-neon">🛡️ Vulnerability Assessment</h2>
+        <h2 className="font-orbitron text-xl md:text-2xl text-neon">🛡️ Vulnerability Assessment</h2>
         <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,220px),minmax(0,1fr)]">
-          <select className="input" value={severity} onChange={(e) => setSeverity(e.target.value)}>
+          <select className="input w-full sm:w-auto" value={severity} onChange={(e) => setSeverity(e.target.value)}>
             <option value="all">All severities</option>
             <option value="critical">Critical</option>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
-          <input className="input" placeholder="Search CVE, title, or description" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input className="input w-full sm:w-auto" placeholder="Search CVE, title, or description" value={q} onChange={(e) => setQ(e.target.value)} />
         </div>
       </section>
 
@@ -49,7 +49,7 @@ export default function VulnerabilitiesPage() {
                   CVSS {item.cvss}
                 </span>
                 <SeverityBadge severity={item.severity} />
-                <button className="btn-primary text-sm" onClick={() => setExpanded((v) => (v === item.id ? null : item.id))}>
+                <button className="btn-primary text-sm w-full sm:w-auto" onClick={() => setExpanded((v) => (v === item.id ? null : item.id))}>
                   {expanded === item.id ? "Hide" : "View Details"}
                 </button>
               </div>

@@ -14,7 +14,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
   onClick,
   animated = true,
 }) => {
-  const baseClasses = 'glass-panel rounded-lg p-4';
+  const baseClasses = 'glass-panel w-full max-w-full min-w-0 rounded-lg p-4';
   
   const glassClasses = glowing
     ? `${baseClasses} glow-border`

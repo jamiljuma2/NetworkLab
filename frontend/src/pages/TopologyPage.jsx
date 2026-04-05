@@ -37,12 +37,12 @@ export default function TopologyPage() {
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr),minmax(0,1fr)]">
       <section className="glass rounded-xl border border-neon/30 p-4">
-        <h2 className="font-orbitron text-neon">Interactive Network Topology</h2>
+        <h2 className="font-orbitron text-xl md:text-2xl text-neon">Interactive Network Topology</h2>
         <p className="mb-3 text-sm text-slate-400">Zoom, drag, and click nodes to inspect host state.</p>
 
         <div className="mb-3 grid gap-2 sm:grid-cols-[minmax(0,1fr),minmax(0,2fr)]">
           <label className="text-xs uppercase tracking-wider text-slate-400">Scan Network</label>
-          <select className="input" value={scanId} onChange={onSelectScan}>
+          <select className="input w-full sm:w-auto" value={scanId} onChange={onSelectScan}>
             {(topology.availableScans || []).map((scan) => (
               <option key={scan.id} value={scan.id}>
                 {formatScanLabel(scan)}
@@ -59,7 +59,7 @@ export default function TopologyPage() {
       </section>
 
       <section className="glass rounded-xl border border-neon/30 p-4">
-        <h3 className="font-orbitron text-neon">Host Details</h3>
+        <h3 className="font-orbitron text-xl md:text-2xl text-neon">Host Details</h3>
         {!selected ? <p className="mt-2 text-sm text-slate-500">Select a node to inspect details.</p> : null}
         {selected ? (
           <div className="mt-3 space-y-2 text-sm">

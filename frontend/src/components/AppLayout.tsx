@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import StatusIndicator from './StatusIndicator';
+import { useMobile } from '../hooks/useMobile';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -16,8 +17,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({
   children,
   currentPage = 'dashboard',
 }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const isMobile = useMobile();
 
   const navigationItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },
@@ -32,13 +34,13 @@ const AppLayout: React.FC<AppLayoutProps> = ({
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Mobile Menu Overlay */}
-      {sidebarOpen && (
+      {mobileOpen && (
         <motion.div
           className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => setSidebarOpen(false)}
+          onClick={() => setMobileOpen(false)}
         />
       )}
 
@@ -47,12 +49,12 @@ const AppLayout: React.FC<AppLayoutProps> = ({
         className={`
           fixed lg:relative flex flex-col border-r border-border
           bg-card/50 backdrop-blur-sm z-50 lg:z-0
-          h-full overflow-y-auto
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+          h-full overflow-y-auto -translate-x-full lg:translate-x-0
+          ${mobileOpen ? 'translate-x-0' : ''}
         `}
         animate={{
-          width: sidebarExpanded ? 240 : 72,
-          transition: { duration: 0.3 },
+          width: isMobile ? 256 : sidebarExpanded ? 240 : 72,
+          transition: { duration: 0.25 },
         }}
         initial={false}
       >
@@ -79,7 +81,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
           {/* Collapse button */}
           <button
             onClick={() => setSidebarExpanded(!sidebarExpanded)}
-            className="hidden lg:block p-1 hover:bg-muted rounded transition-colors"
+            className="hidden lg:flex p-1 hover:bg-muted rounded transition-colors"
             aria-label="Toggle sidebar"
           >
             {sidebarExpanded ? '←' : '→'}
@@ -87,7 +89,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
 
           {/* Close button on mobile */}
           <button
-            onClick={() => setSidebarOpen(false)}
+            onClick={() => setMobileOpen(false)}
             className="lg:hidden p-1 hover:bg-muted rounded transition-colors"
           >
             <span className="text-sm">✕</span>
@@ -155,7 +157,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
         >
           {/* Menu button on mobile */}
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 hover:bg-muted rounded transition-colors"
             aria-label="Toggle menu"
           >
@@ -181,7 +183,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
         </motion.header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+        <main className="flex-1 min-w-0 overflow-y-auto p-4 md:p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

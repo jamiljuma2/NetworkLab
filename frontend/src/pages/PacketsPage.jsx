@@ -120,7 +120,7 @@ export default function PacketsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-xl border border-neon/30 p-4"
       >
-        <h2 className="font-orbitron text-neon">Real-Time Packet Analysis</h2>
+        <h2 className="font-orbitron text-xl md:text-2xl text-neon">Real-Time Packet Analysis</h2>
         <p className="mt-1 text-xs text-slate-400">
           Live network packet capture with Wireshark-style filtering
         </p>
@@ -128,17 +128,17 @@ export default function PacketsPage() {
         {/* CONTROL BUTTONS */}
         <div className="mt-4 flex flex-wrap gap-2">
           {!capturing ? (
-            <button onClick={startCapture} className="btn-primary">
+            <button onClick={startCapture} className="btn-primary w-full sm:w-auto">
               ▶ Start Capture
             </button>
           ) : (
-            <button onClick={stopCapture} className="btn-danger">
+            <button onClick={stopCapture} className="btn-danger w-full sm:w-auto">
               ⏹ Stop Capture
             </button>
           )}
           <button
             onClick={exportCapture}
-            className="btn-secondary"
+            className="btn-secondary w-full sm:w-auto"
             disabled={packetCount === 0 || isExporting}
           >
             {isExporting ? "Exporting..." : "📥 Export as JSON"}

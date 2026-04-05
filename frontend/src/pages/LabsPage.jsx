@@ -219,7 +219,7 @@ export default function LabsPage() {
       <section className="glass ui-smooth rounded-xl border border-neon/30 p-4">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="font-orbitron text-neon">Interactive Cyber Range</h2>
+            <h2 className="font-orbitron text-xl md:text-2xl text-neon">Interactive Cyber Range</h2>
             <p className="mt-2 text-sm text-slate-400">Search, filter, and resume scenarios using real lab data.</p>
           </div>
           {hasLastLab ? (
