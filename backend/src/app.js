@@ -35,6 +35,16 @@ function createApp() {
   app.use(express.json({ limit: "1mb" }));
   app.use(morgan("dev"));
 
+  app.get("/", (req, res) => {
+    res.json({
+      service: "networklab-backend",
+      status: "ok",
+      docs: "/api",
+      health: "/health",
+      time: new Date().toISOString(),
+    });
+  });
+
   app.get("/health", (req, res) => {
     res.json({ status: "ok", service: "networklab-backend", time: new Date().toISOString() });
   });
