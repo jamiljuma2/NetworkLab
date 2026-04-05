@@ -41,15 +41,15 @@ export default function ShellLayout() {
       <div className="flex min-h-screen">
         {menuOpen ? (
           <button
-            className="fixed inset-0 z-40 bg-black/60 sm:hidden"
+            className="fixed inset-0 z-40 bg-black/60 lg:hidden"
             onClick={closeMenu}
             aria-label="Close sidebar overlay"
           />
         ) : null}
 
         <aside
-          className={`glass fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-64 flex-col border-r border-neon/35 p-3 transition-transform sm:sticky sm:top-0 sm:h-screen sm:w-64 ${
-            menuOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"
+          className={`glass fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-64 flex-col border-r border-neon/35 p-3 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-64 ${
+            menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         >
           <div className="min-h-0 flex-1 overflow-y-auto pr-1">
@@ -100,7 +100,7 @@ export default function ShellLayout() {
         </aside>
 
         <section className="flex min-w-0 flex-1 flex-col overflow-x-hidden">
-          <header className="glass sticky top-0 z-30 border-b border-neon/35 px-3 py-3 sm:hidden">
+          <header className="glass sticky top-0 z-30 border-b border-neon/35 px-3 py-3 lg:hidden">
             <div className="flex items-center justify-between gap-2">
               <p className="font-orbitron text-sm tracking-widest text-neon">NETWORKLAB</p>
               <button
