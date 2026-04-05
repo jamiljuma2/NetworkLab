@@ -229,7 +229,7 @@ export default function LabsPage() {
           ) : null}
         </div>
 
-        <div className="mt-4 grid gap-3 md:grid-cols-[1fr,220px] xl:grid-cols-[1fr,220px,220px]">
+        <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr),minmax(0,220px)] xl:grid-cols-[minmax(0,1fr),220px,220px]">
           <input
             className="input"
             placeholder="Search labs by title, category, or scenario"

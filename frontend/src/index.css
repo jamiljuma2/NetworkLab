@@ -37,6 +37,16 @@ body,
 #root {
   margin: 0;
   min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 /* ============================================================================
@@ -133,6 +143,28 @@ code, pre {
     0 8px 32px 0 hsla(120, 100%, 50%, 0.1),
     inset 0 0 16px hsla(120, 100%, 50%, 0.05);
   position: relative;
+}
+
+.dense-view,
+.dense-view > *,
+.dense-view .glass,
+.dense-view .glass-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dense-view p,
+.dense-view span,
+.dense-view a,
+.dense-view code {
+  overflow-wrap: anywhere;
+}
+
+.dense-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Recharts containers need concrete, non-negative dimensions during layout recalculations */

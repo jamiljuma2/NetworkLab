@@ -8,7 +8,7 @@ export default function TerminalOutput({ lines }) {
     <div className="terminal-output rounded-xl border border-neon/30 bg-black/70 p-3 font-mono text-xs text-neon shadow-neon">
       {visible.length === 0 ? <p className="text-slate-500">No terminal output yet.</p> : null}
       {visible.map((line, visibleIndex) => (
-        <p key={`line-${startIndex + visibleIndex}`} className="leading-relaxed">
+        <p key={`line-${startIndex + visibleIndex}`} className="leading-relaxed whitespace-pre-wrap break-words">
           {line}
         </p>
       ))}

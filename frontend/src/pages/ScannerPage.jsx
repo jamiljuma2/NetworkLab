@@ -246,7 +246,7 @@ export default function ScannerPage() {
           Real Nmap execution with safe production mode • {user?.role || "Unknown"} role
         </p>
 
-        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr,140px,120px,100px]">
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr),140px,120px,100px]">
           <input
             className="input"
             value={target}

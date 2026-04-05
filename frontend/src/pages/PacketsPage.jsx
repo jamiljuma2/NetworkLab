@@ -182,7 +182,7 @@ export default function PacketsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-xl border border-neon/30 p-4"
       >
-        <div className="grid gap-3 sm:grid-cols-[200px,1fr]">
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,200px),minmax(0,1fr)]">
           <select
             className="input"
             value={protocol}

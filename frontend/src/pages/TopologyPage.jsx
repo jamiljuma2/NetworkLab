@@ -35,12 +35,12 @@ export default function TopologyPage() {
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[2fr,1fr]">
+    <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr),minmax(0,1fr)]">
       <section className="glass rounded-xl border border-neon/30 p-4">
         <h2 className="font-orbitron text-neon">Interactive Network Topology</h2>
         <p className="mb-3 text-sm text-slate-400">Zoom, drag, and click nodes to inspect host state.</p>
 
-        <div className="mb-3 grid gap-2 sm:grid-cols-[1fr,2fr]">
+        <div className="mb-3 grid gap-2 sm:grid-cols-[minmax(0,1fr),minmax(0,2fr)]">
           <label className="text-xs uppercase tracking-wider text-slate-400">Scan Network</label>
           <select className="input" value={scanId} onChange={onSelectScan}>
             {(topology.availableScans || []).map((scan) => (

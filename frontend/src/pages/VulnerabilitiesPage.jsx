@@ -23,7 +23,7 @@ export default function VulnerabilitiesPage() {
     <div className="dense-view space-y-4">
       <section className="glass rounded-xl border border-neon/30 p-4">
         <h2 className="font-orbitron text-neon">🛡️ Vulnerability Assessment</h2>
-        <div className="mt-3 grid gap-3 md:grid-cols-[220px,1fr]">
+        <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,220px),minmax(0,1fr)]">
           <select className="input" value={severity} onChange={(e) => setSeverity(e.target.value)}>
             <option value="all">All severities</option>
             <option value="critical">Critical</option>
