@@ -2,7 +2,11 @@ import axios from "axios";
 
 const configuredApiUrl = String(import.meta.env.VITE_API_URL || "").trim();
 const productionFallbackApiUrl = "https://networklab-gwad.onrender.com";
-const developmentFallbackApiUrl = "http://localhost:4000";
+const developmentFallbackApiUrl = (() => {
+  if (typeof window === "undefined") return "http://localhost:4000";
+  const protocol = window.location.protocol === "https:" ? "https" : "http";
+  return `${protocol}://${window.location.hostname}:4000`;
+})();
 
 const baseURL =
   configuredApiUrl ||

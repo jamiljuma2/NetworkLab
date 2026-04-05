@@ -154,10 +154,15 @@ code, pre {
 }
 
 .dense-view p,
-.dense-view span,
 .dense-view a,
 .dense-view code {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.dense-view span {
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .dense-table {

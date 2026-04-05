@@ -1,11 +1,26 @@
 #root {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 /* Layout shells can opt out of centered root constraints. */
+body.app-shell-active #root,
 body:has(.app-layout-fullbleed) #root {
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin: 0;
+}
+
+body.app-shell-active .app-layout-fullbleed > div > section,
+body.app-shell-active .app-layout-fullbleed > div > section > main {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  left: 0;
+  right: 0;
 }

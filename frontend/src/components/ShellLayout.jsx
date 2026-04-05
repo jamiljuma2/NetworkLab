@@ -32,13 +32,18 @@ export default function ShellLayout() {
     localStorage.setItem("networklab_compact_mode", String(compactMode));
   }, [compactMode]);
 
+  useEffect(() => {
+    document.body.classList.add("app-shell-active");
+    return () => document.body.classList.remove("app-shell-active");
+  }, []);
+
   function closeMenu() {
     setMenuOpen(false);
   }
 
   return (
-    <div className="app-layout-fullbleed min-h-screen overflow-x-hidden bg-grid text-slate-100">
-      <div className="flex min-h-screen">
+    <div className="app-layout-fullbleed min-h-screen w-full max-w-full overflow-x-hidden bg-grid text-slate-100">
+      <div className="flex min-h-screen w-full max-w-full overflow-x-hidden">
         {menuOpen ? (
           <button
             className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
@@ -99,9 +104,9 @@ export default function ShellLayout() {
           </div>
         </aside>
 
-        <section className="flex min-w-0 flex-1 flex-col overflow-x-hidden">
+        <section className="relative left-0 right-0 flex min-w-0 flex-1 max-w-full flex-col overflow-x-hidden">
           <header className="glass sticky top-0 z-30 border-b border-neon/35 px-3 py-3 lg:hidden">
-            <div className="flex items-center justify-between gap-2">
+            <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-2">
               <p className="font-orbitron text-sm tracking-widest text-neon">NETWORKLAB</p>
               <button
                 onClick={() => setMenuOpen((v) => !v)}
@@ -113,8 +118,10 @@ export default function ShellLayout() {
             </div>
           </header>
 
-          <main className="w-full max-w-full flex-1 min-w-0 overflow-y-auto p-4 md:p-6">
-            <Outlet />
+          <main className="w-full max-w-full flex-1 min-w-0 overflow-x-auto overflow-y-auto px-4 py-4 md:p-6">
+            <div className="mx-auto w-full max-w-md sm:max-w-2xl lg:mx-0 lg:max-w-none">
+              <Outlet />
+            </div>
           </main>
         </section>
       </div>
