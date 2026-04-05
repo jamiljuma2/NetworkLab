@@ -9,10 +9,16 @@ const { hashPassword } = require("./utils/security");
 async function bootstrap() {
   const app = createApp();
   const server = http.createServer(app);
+  const isProduction = process.env.NODE_ENV === "production";
+  const socketAllowedOrigins = [env.clientOrigin];
+
+  if (!isProduction) {
+    socketAllowedOrigins.push("http://localhost:5173", "http://127.0.0.1:5173");
+  }
 
   const io = new Server(server, {
     cors: {
-      origin: env.clientOrigin,
+      origin: socketAllowedOrigins,
       methods: ["GET", "POST"],
     },
   });
