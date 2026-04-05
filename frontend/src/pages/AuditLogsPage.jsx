@@ -128,10 +128,10 @@ export default function AuditLogsPage() {
               transition={{ delay: idx * 0.02 }}
               className="glass rounded-lg border border-slate-700 p-3 hover:border-neon/30 transition-colors"
             >
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-mono text-xs font-semibold text-neon">
+                    <span className="font-mono text-xs font-semibold text-neon break-all">
                       {log.eventType}
                     </span>
                     {log.severity && (
@@ -199,7 +199,7 @@ export default function AuditLogsPage() {
                   )}
                 </div>
 
-                <p className="text-xs text-slate-500 whitespace-nowrap">
+                <p className="text-xs text-slate-500 break-words sm:text-right">
                   {new Date(log.timestamp).toLocaleString()}
                 </p>
               </div>

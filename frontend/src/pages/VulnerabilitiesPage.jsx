@@ -45,7 +45,7 @@ export default function VulnerabilitiesPage() {
                 <p className="mt-2 text-sm text-slate-400">{item.description}</p>
               </div>
               <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
-                <span className="rounded border border-slate-700 px-2 py-1 text-xs whitespace-nowrap" title={cvssTooltip}>
+                <span className="rounded border border-slate-700 px-2 py-1 text-xs" title={cvssTooltip}>
                   CVSS {item.cvss}
                 </span>
                 <SeverityBadge severity={item.severity} />

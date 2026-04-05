@@ -209,14 +209,14 @@ export default function PacketsPage() {
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass dense-table hidden overflow-auto rounded-xl border border-neon/30 p-2 md:block"
+        className="glass dense-table hidden overflow-x-auto rounded-xl border border-neon/30 p-2 md:block"
       >
         {rows.length === 0 ? (
           <div className="p-8 text-center text-slate-400">
             {capturing ? "Waiting for packets..." : "Start capture to see packets"}
           </div>
         ) : (
-          <table className="min-w-[760px] text-sm">
+          <table className="w-full min-w-[640px] text-sm">
             <thead>
               <tr className="text-left text-slate-400">
                 <th className="p-2">Timestamp</th>
@@ -235,7 +235,7 @@ export default function PacketsPage() {
                     row.suspicious ? "bg-red-950/40" : ""
                   } border-t border-slate-800 hover:bg-slate-800/30 transition-colors`}
                 >
-                  <td className="p-2 text-xs font-mono text-slate-500 whitespace-nowrap">
+                  <td className="p-2 text-xs font-mono text-slate-500">
                     {new Date(row.timestamp).toLocaleTimeString()}
                   </td>
                   <td className="p-2 font-mono text-cyan-400">{row.src}</td>
@@ -256,7 +256,7 @@ export default function PacketsPage() {
                     </span>
                   </td>
                   <td className="p-2 text-slate-400">{row.length} bytes</td>
-                  <td className="p-2 text-slate-300 max-w-xs truncate">
+                  <td className="p-2 text-slate-300 max-w-[18rem] break-words">
                     {row.suspicious && <span className="text-red-400">⚠️ </span>}
                     {row.info}
                   </td>
@@ -302,7 +302,7 @@ export default function PacketsPage() {
                 >
                   {row.protocol}
                 </span>
-                <span className="text-slate-500">
+                <span className="text-slate-500 shrink-0">
                   {new Date(row.timestamp).toLocaleTimeString()}
                 </span>
               </div>

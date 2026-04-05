@@ -48,14 +48,14 @@ export default function ShellLayout() {
         ) : null}
 
         <aside
-          className={`glass fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-neon/35 p-3 transition-transform sm:sticky sm:top-0 sm:h-screen ${
+          className={`glass fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-64 flex-col border-r border-neon/35 p-3 transition-transform sm:sticky sm:top-0 sm:h-screen sm:w-64 ${
             menuOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"
           }`}
         >
           <div className="min-h-0 flex-1 overflow-y-auto pr-1">
             <div className="border-b border-neon/30 pb-3">
               <p className="font-orbitron text-lg tracking-widest text-neon">NETWORKLAB</p>
-              <p className="text-xs text-slate-400">Vulnerability Assessment Command Center</p>
+              <p className="text-xs text-slate-400 break-words">Vulnerability Assessment Command Center</p>
             </div>
 
             <nav className="mt-4 grid gap-2 text-sm">
@@ -83,7 +83,7 @@ export default function ShellLayout() {
 
           <div className="mt-3 shrink-0 border-t border-neon/30 pt-3 text-xs text-slate-300">
             <p className="truncate">{user?.name}</p>
-            <p className="text-neon/80">{user?.role}</p>
+            <p className="text-neon/80 break-words">{user?.role}</p>
           </div>
 
           <div className="mt-3 grid gap-2">
