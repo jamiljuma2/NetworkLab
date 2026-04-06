@@ -388,6 +388,9 @@ function startNmapScan({ target, scanType, userId, role, consent = false }, onPr
       lines.forEach((line) => {
         if (line.trim()) {
           const parsed = parseNmapOutput(line);
+          if (!parsed) {
+            return;
+          }
 
           // Format output line
           const prefix = determinePrefixForLine(line);
@@ -535,6 +538,17 @@ function stopScan(scanId) {
   }
 }
 
+function stopAllScans() {
+  for (const [scanId, process] of activeScanProcesses.entries()) {
+    try {
+      process.kill("SIGTERM");
+    } catch (err) {
+      console.error(`Error stopping scan ${scanId}:`, err);
+    }
+    activeScanProcesses.delete(scanId);
+  }
+}
+
 function getScanById(scanId) {
   return inMemory.scans.find((s) => s.id === scanId);
 }
@@ -546,6 +560,7 @@ function getScansByUser(userId) {
 module.exports = {
   startNmapScan,
   stopScan,
+  stopAllScans,
   getScanById,
   getScansByUser,
   validateTarget,
