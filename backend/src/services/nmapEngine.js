@@ -46,6 +46,8 @@ function resolveNmapExecutable() {
       "C:\\Program Files (x86)\\Nmap\\nmap.exe",
       "C:\\Nmap\\nmap.exe"
     );
+  } else {
+    candidates.push("/usr/bin/nmap", "/usr/local/bin/nmap", "/bin/nmap");
   }
 
   for (const candidate of candidates) {
