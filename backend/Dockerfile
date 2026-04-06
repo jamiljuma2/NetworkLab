@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY src ./src
-COPY logs ./logs
+RUN mkdir -p ./logs
 
 ENV NODE_ENV=production
 ENV NMAP_PATH=/usr/bin/nmap
