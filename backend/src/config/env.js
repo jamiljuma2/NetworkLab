@@ -7,6 +7,7 @@ const env = {
   databaseUrl: process.env.DATABASE_URL || "",
   clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
   nmapPath: process.env.NMAP_PATH || "",
+  nmapUseRaw: process.env.NMAP_USE_RAW === "true",
 };
 
 module.exports = { env };

@@ -186,10 +186,18 @@ function buildNmapCommand(target, scanType, isProduction = false) {
     if (scanType === "quick") {
       baseCmd.push("-sn"); // Host discovery only
     } else if (scanType === "full") {
-      baseCmd.push("-sS"); // SYN scan
+      if (env.nmapUseRaw) {
+        // Requires raw socket capability (e.g. CAP_NET_RAW / privileged host)
+        baseCmd.push("-sS");
+        baseCmd.push("-O");
+        baseCmd.push("-T4");
+      } else {
+        // Works in unprivileged containers like Render.
+        baseCmd.push("-sT");
+        baseCmd.push("-T3");
+      }
+
       baseCmd.push("-sV"); // Service detection
-      baseCmd.push("-O"); // OS detection (safe for internal)
-      baseCmd.push("-T4"); // Faster timing for internal networks
     }
   }
 
