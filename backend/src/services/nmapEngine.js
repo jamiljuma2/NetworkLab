@@ -173,6 +173,12 @@ function validateTarget(target) {
 
 function buildNmapCommand(target, scanType, isProduction = false) {
   const baseCmd = [resolveNmapExecutable()];
+  const useRawSockets = Boolean(env.nmapUseRaw);
+
+  if (!useRawSockets) {
+    baseCmd.push("--unprivileged");
+    baseCmd.push("-Pn");
+  }
 
   if (isProduction) {
     // Safe mode for production targets
@@ -184,9 +190,15 @@ function buildNmapCommand(target, scanType, isProduction = false) {
   } else {
     // Internal network scans can be more aggressive
     if (scanType === "quick") {
-      baseCmd.push("-sn"); // Host discovery only
+      if (useRawSockets) {
+        baseCmd.push("-sn"); // Host discovery only
+      } else {
+        // Unprivileged quick profile: lightweight connect scan without raw sockets.
+        baseCmd.push("-sT");
+        baseCmd.push("--top-ports", "20");
+      }
     } else if (scanType === "full") {
-      if (env.nmapUseRaw) {
+      if (useRawSockets) {
         // Requires raw socket capability (e.g. CAP_NET_RAW / privileged host)
         baseCmd.push("-sS");
         baseCmd.push("-O");
