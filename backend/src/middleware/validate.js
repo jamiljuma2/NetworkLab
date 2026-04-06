@@ -32,7 +32,7 @@ const schemas = {
   }),
   startScan: z.object({
     body: z.object({
-      target: z.string().regex(/^[0-9./]+$/, "Target must be IPv4 or CIDR-like input"),
+      target: z.string().trim().min(1, "Target is required"),
       scanType: z.enum(["quick", "full"]),
     }),
     query: z.object({}).passthrough(),
